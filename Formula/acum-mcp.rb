@@ -10,11 +10,8 @@ class AcumMcp < Formula
   depends_on "node"
 
   def install
-    # npm tarballs extract with a "package/" prefix — install deps inside it
-    cd "package" do
-      system "npm", "install", "--omit", "dev"
-      libexec.install Dir["*"]
-    end
+    system "npm", "install", "--omit", "dev"
+    libexec.install Dir["*"]
     chmod 0755, libexec/"dist/index.js"
     (bin/"acum-mcp").write <<~SH
       #!/bin/bash
